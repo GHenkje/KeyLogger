@@ -1,4 +1,4 @@
-/* HenkChat
+/* KeyLogger
  * Copyright (C) 2018  henkje (henkje@pm.me)
  * 
  * MIT license
