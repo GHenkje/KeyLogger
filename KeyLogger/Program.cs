@@ -20,7 +20,7 @@ namespace KeyLogger
 {
     class Program
     {
-        //Delay when no key is pressed
+        //Delay, used when no key is pressed
         const short Delay = 50;
 
         [DllImport("user32.dll")]
