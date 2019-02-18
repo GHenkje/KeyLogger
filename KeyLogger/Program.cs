@@ -29,7 +29,7 @@ namespace KeyLogger
 
         static void Main()
         {
-            int Keys = Enum.GetValues(typeof(Keys)).Length;
+            int Keys = Enum.GetValues(typeof(Keys)).Length;//Get the length of avaible keys.
 
             while (true)
             {
