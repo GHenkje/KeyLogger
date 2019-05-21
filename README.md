@@ -11,4 +11,4 @@
   
 # how does it work?
 This keylogger will log all pressed keys in a file, located in the same folder as the keylogger.
-The keylogger uses the GetAsyncKeyState API of windows to know wich key is pressed.
+The keylogger uses the GetAsyncKeyState API of windows to detect wich key is pressed.
