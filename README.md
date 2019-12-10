@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/badge/version-1.0.0-blue.svg">
   <br/>
   <br/>
-  <a>Example of how to capture all pressed keys with c#<a/>
+  <a>An example of how to capture all pressed keys with c#<a/>
   <br/><br/>
 </p>
   
